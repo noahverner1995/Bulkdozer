@@ -19,13 +19,14 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.common.by import By
 
 opt = Options() #the variable that will store the selenium options
 opt.add_experimental_option("debuggerAddress", "localhost:9222") #this allows bulk-dozer to take control of your Chrome Browser in DevTools mode.
 
 def wait_xpath(code): #function to wait for the element to be found by its XPATH
-    WebDriverWait(driver, 60).until(EC.presence_of_element_located((By.XPATH, code)))
+    WebDriverWait(driver, 8).until(EC.presence_of_element_located((By.XPATH, code)))
 
 def check_path(infile): #evaluate if the path provided actually exists in the os.
     return os.path.exists(infile) 
@@ -217,10 +218,18 @@ while nft_counter <= end_number:
             print(f'\033[0;37;44mStarting minting the nft #{start_number}, the final nft to be minted is #{end_number}\033[0m')
         elif nft_counter > start_number:
             print(f'\033[0;37;44mMinting #{nft_counter}\033[0m')
-        wait_xpath('//*[@id="__next"]/div[1]/main/div/div/div[1]/span/a') #wait for the button_add_item to be present and located
-        button_add_item = driver.find_element(By.XPATH, '//*[@id="__next"]/div[1]/main/div/div/div[1]/span/a').click() #by doing this, the new link will automatically set the corresponding collection as default
+        while True: #a simple trick to counter possible 504 errors and related scenarios
+            try:
+                wait_xpath('//*[@id="main"]/div/div/section/div/form/div[1]/div/div[2]') #wait for the _imageUpload button to be present and located
+                checker_imageupload = np.size(driver.find_elements(By.XPATH, '//*[@id="main"]/div/div/section/div/form/div[1]/div/div[2]'))
+                if checker_imageupload == 1:
+                    break
+            except TimeoutException:
+                print('I ended up getting a TimeOutException while waiting for the image upload element to be present within the page')
+                print('I am going to reload the page to see if this solves the issue')
+                driver.refresh()
+        time.sleep(1.3)
         nft_to_be_selected = nft_folder_path+"\\"+str(nft_counter)+".png"
-        wait_xpath('//*[@id="main"]/div/div/section/div/form/div[1]/div/div[2]') #wait for the _imageUpload button to be present and located
         imageUpload = driver.find_element(By.XPATH, '//*[@id="main"]/div/div/section/div/form/div[1]/div/div[2]').click() #click on the upload image button
         time.sleep(1.5) #wait for the dialog to load
         pyautogui.write(nft_to_be_selected) #this imitates human behaviour, the blink text cursor must be within the 'Name' textbox from the Open dialog
@@ -235,7 +244,8 @@ while nft_counter <= end_number:
         row = nft_counter #assign the current nft_counter to the row variable that will be used to get the corresponding metadata_row
         s = df_metadata.iloc[row] #get only the corresponding metadata row for the current NFT
         current_dictionary = dict(zip(s[~s.index.duplicated()], s[~s.index.duplicated(keep='last')])) #convert the metadata_row to a dictionary for later use
-        print(current_dictionary)
+        print('Metadata to add:')
+        print(f'{current_dictionary}')
         button_plus_properties = driver.find_element(By.XPATH, '//*[@id="main"]/div/div/section/div[2]/form/section/div[1]/div/div[2]/button').click() #click on the "+" button of Properties
         wait_xpath('/html/body/div/div/div/div/section/button') #wait for button_add_more to be loaded and located
         type_array = list(current_dictionary.keys()) #get the keys which will be send as types
@@ -261,10 +271,40 @@ while nft_counter <= end_number:
             button_blockchain = driver.find_element(By.XPATH, '//*[@id="main"]/div/div/section/div[2]/form/div[7]/div/div[2]').click() #deploy other blockchain options
             button_polygon = driver.find_element(By.XPATH, '//*[@id="tippy-88"]/div/div/div/ul/li/button') #find the polygon one
             button_polygon.click() #choose it
+        time.sleep(1)    
         button_create = driver.find_element(By.XPATH, '//*[@id="main"]/div/div/section/div[2]/form/div[9]/div[1]/span/button').click() #create the NFT (Metadata NOT FROZEN)
-        wait_xpath('/html/body/div[5]/div/div/div/div[1]/header') #wait for the header that notifies the user that the NFT has been created
-        button_close_header_nft_created = driver.find_element(By.XPATH, '/html/body/div[5]/div/div/div/div[2]/button').click() #close this header
-        wait_xpath('//*[@id="main"]/div/div/div[1]/div/span[2]/a') #wait for the button_sell to be located
+        while True: #let the page stop buffering and wait for the new page even if it then throws 504 errors or related scenarios
+            try:
+                WebDriverWait(driver, 1.5).until(EC.presence_of_element_located((By.XPATH, '//*[@id="main"]/div/div/section/div[2]/form/div[9]/div[1]/span/button'))) #wait for the button_create to be present and located
+            except TimeoutException:
+                print('success')
+                break
+        number_of_tries = 0
+        while True: #a simple trick to counter possible 504 errors and related scenarios
+            if number_of_tries == 0:
+                try:
+                    wait_xpath('/html/body/div[5]/div/div/div/div[1]/header') #wait for the header that notifies the user that the NFT has been created
+                    checker_button_close_header = np.size(driver.find_elements(By.XPATH, '/html/body/div[5]/div/div/div/div[2]/button'))
+                    if checker_button_close_header == 1:
+                        button_close_header_nft_created = driver.find_element(By.XPATH, '/html/body/div[5]/div/div/div/div[2]/button').click() #close this header
+                        wait_xpath('//*[@id="main"]/div/div/div[1]/div/span[2]/a') #wait for the button_sell to be located
+                        break
+                except TimeoutException:
+                    print('I ended up getting a TimeOutException while waiting for the button for closing the header to be present within the page')
+                    print('I am going to reload the page to see if this solves the issue')
+                    number_of_tries += 1
+                    driver.refresh()
+            else:
+                try:
+                    wait_xpath('//*[@id="main"]/div/div/div[1]/div/span[2]/a') #wait for the button_sell to be located
+                    checker_sell_button = np.size(driver.find_elements(By.XPATH, '//*[@id="main"]/div/div/div[1]/div/span[2]/a'))
+                    if checker_sell_button == 1:
+                        break
+                except TimeoutException:
+                    print('Did not work, I am going to refresh again')
+                    number_of_tries += 1
+                    driver.refresh()        
+        time.sleep(1)
         url_of_nft_recently_minted = driver.current_url #get the current url of the nft that was minted moments ago
         properties_found = np.size(driver.find_elements(By.XPATH, '//*[text()="Properties"]')) #store the amount of web elements that display the text "Properties"
         while True:
@@ -275,7 +315,21 @@ while nft_counter <= end_number:
                 driver.execute_script("window.scrollBy(0,890)", "") #scroll down the page to know what's being added, right at the Blockchain's height
                 number_of_properties = np.size(driver.find_elements(By.XPATH, '/html/body/div[1]/div/main/div/div/section/div[2]/form/section/div[1]/div[2]/a')) #check if there are properties already
                 if number_of_properties > 0:
-                    break
+                    driver.get(url_of_nft_recently_minted)
+                    while True: #a simple trick to counter possible 504 errors and related scenarios
+                        try:
+                            wait_xpath('//*[@id="main"]/div/div/div[1]/div/span[2]/a') #wait for the button_sell to be located
+                            checker_sell_button = np.size(driver.find_elements(By.XPATH, '//*[@id="main"]/div/div/div[1]/div/span[2]/a'))
+                            if checker_sell_button == 1:
+                                break
+                        except TimeoutException:
+                            print('I ended up getting a TimeOutException while waiting for the button for selling to be present within the page')
+                            print('I am going to reload the page to see if this solves the issue')
+                            driver.refresh()
+                    time.sleep(0.5)
+                    properties_found = np.size(driver.find_elements(By.XPATH, '//*[text()="Properties"]')) #store the amount of web elements that display the text "Properties"
+                    if properties_found == 1:
+                        break
                 elif number_of_properties == 0:
                     button_plus_properties = driver.find_element(By.XPATH, '//*[@id="main"]/div/div/section/div[2]/form/section/div[1]/div/div[2]/button').click() #click on the "+" button of Properties
                     wait_xpath('/html/body/div/div/div/div/section/button') #wait for button_add_more to be loaded and located
@@ -298,13 +352,31 @@ while nft_counter <= end_number:
                     button_save_changes.click()
                     wait_xpath('//*[text()="Success!"]')
                     driver.get(url_of_nft_recently_minted)      
-                    wait_xpath('//*[@id="main"]/div/div/div[1]/div/span[2]/a') #wait for the button_sell to be located
+                    while True: #a simple trick to counter possible 504 errors and related scenarios
+                        try:
+                            wait_xpath('//*[@id="main"]/div/div/div[1]/div/span[2]/a') #wait for the button_sell to be located
+                            checker_sell_button = np.size(driver.find_elements(By.XPATH, '//*[@id="main"]/div/div/div[1]/div/span[2]/a'))
+                            if checker_sell_button == 1:
+                                break
+                        except TimeoutException:
+                            driver.refresh()
+                    time.sleep(0.7)
                     properties_found = np.size(driver.find_elements(By.XPATH, '//*[text()="Properties"]')) #store the amount of web elements that display the text "Properties"
             else: #if the nft that was minted moments ago DID STORE THE METADATA, break the loop
                 break   
         button_sell = driver.find_element(By.XPATH, '//*[@id="main"]/div/div/div[1]/div/span[2]/a') #find the sell button
+        time.sleep(1)
         button_sell.click()
-        wait_xpath('//*[@id="main"]/div/div/div[3]/div/div[2]/div/div[1]/form/div[1]/div/div[2]/div/div/div[2]') #wait for the amount textbox to be present
+        while True: #a simple trick to counter possible 504 errors and related scenarios
+            try:
+                wait_xpath('//*[@id="main"]/div/div/div[3]/div/div[2]/div/div[1]/form/div[1]/div/div[2]/div/div/div[2]') #wait for the amount textbox to be present
+                checker_amount_textbox = np.size(driver.find_elements(By.XPATH, '//*[@id="main"]/div/div/div[3]/div/div[2]/div/div[1]/form/div[1]/div/div[2]/div/div/div[2]'))
+                if checker_amount_textbox == 1:
+                    break
+            except TimeoutException:
+                print('I ended up getting a TimeOutException while waiting for the amount textbox within the page')
+                print('I am going to reload the page to see if this solves the issue')
+                driver.refresh()                
         payment_method_checker = driver.find_element(By.XPATH, '//*[@id="main"]/div/div/div[3]/div/div[2]/div/div[1]/form/div[1]/div/div[2]/div/div/div[1]/input').get_attribute('value')
         if payment_method_checker != payment_method:
             button_payment_method = driver.find_element(By.XPATH, '//*[@id="main"]/div/div/div[3]/div/div[2]/div/div[1]/form/div[1]/div/div[2]/div/div/div[1]')
@@ -387,7 +459,28 @@ while nft_counter <= end_number:
         wait_xpath('//*[text()="close"]') #wait for the "X" button to close the dialog
         button_close_nft_listed_dialog = driver.find_element(By.XPATH, '//*[text()="close"]')
         button_close_nft_listed_dialog.click()
-        wait_xpath('/html/body/div[1]/div/main/div/div/div[2]/div[1]/div/div[1]/div[2]/section[1]/div/div[1]/div/a') #wait for the link to the collection to be located in the new page
+        driver.get(url_of_nft_recently_minted)
+        while True: #a simple trick to counter possible 504 errors and related scenarios
+            try:
+                wait_xpath('/html/body/div[1]/div/main/div/div/div[2]/div[1]/div/div[1]/div[2]/section[1]/div/div[1]/div/a') #wait for the link of the collection to be located in the new page
+                checker_collection_link = np.size(driver.find_elements(By.XPATH, '/html/body/div[1]/div/main/div/div/div[2]/div[1]/div/div[1]/div[2]/section[1]/div/div[1]/div/a'))
+                if checker_collection_link == 1:
+                    break
+            except TimeoutException:
+                print('I ended up getting a TimeOutException while waiting for the collection link within the page')
+                print('I am going to reload the page to see if this solves the issue')
+                driver.refresh() 
+        time.sleep(1.3)
         nft_counter += 1        
     else:
         driver.get(collection_link)
+        while True: #a simple trick to counter possible 504 errors and related scenarios
+            try:
+                wait_xpath('//*[@id="__next"]/div[1]/main/div/div/div[1]/span/a') #wait for the button_add_item to be present and located
+                checker_add_item_button = np.size(driver.find_elements(By.XPATH, '//*[@id="__next"]/div[1]/main/div/div/div[1]/span/a'))
+                if checker_add_item_button == 1:
+                    break            
+            except TimeoutException:
+                print('I ended up getting a TimeOutException while waiting for the add item button within the page')
+                print('I am going to reload the page to see if this solves the issue')
+        button_add_item = driver.find_element(By.XPATH, '//*[@id="__next"]/div[1]/main/div/div/div[1]/span/a').click() #by doing this, the new link will automatically set the corresponding collection as default
