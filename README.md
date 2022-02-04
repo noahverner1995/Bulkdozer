@@ -1,2 +1,7 @@
-# Bulkdozer
-Another open-source project that's focused on making bulk uploads to OpenSea marketplace in an unorthodox way
+<h1 align ="center"> Bulkdozer</h1>
+<p align="center">
+    <img src="logo/bulkdozer_logo_1000x1000.png"/>
+</p>
+<br>
+<p align="center"><em>Prepare your servers OpenSea! <b>#EverybodyStandBack</b></em></p>
+<br>
