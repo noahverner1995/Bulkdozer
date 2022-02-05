@@ -45,7 +45,7 @@ By now, let's start mentioning a summary of the technology this program uses �
 
 First of all, you will open `Chrome Browser` using <a href="https://chromedevtools.github.io/devtools-protocol/">**DevTools as protocol client**</a>. This is a mandatory condition since it's the only way (at least known by me so far) to properly let a program take control of a `Chrome Browser` instance with `Selenium` while also **AVOIDING triggering Cloudflare DDoS protection** as shown below:
 
-(Btw, ***keep in mind that you can only have 1 Chrome Instance (window) open when doing this process***, so if you want to keep reading this guide while also running the **The Bulkdozer**, read this guide in a different device (i.e. Your phone or another PC) and start **The Bulkdozer** in your regular PC)
+(Btw, ***keep in mind that you can only have 1 Chrome Instance (window) open when doing this process***, so if you want to keep reading this guide while also running the **The Bulkdozer**, I encourage you to read this guide in a different device (i.e. Your phone or another PC) and start **The Bulkdozer** in your regular PC)
 
 
 <br>
@@ -78,7 +78,7 @@ Okay, now you will copy the path of the current folder (and paste it in a tempor
 </p>
 <br>
 
-Now, you will run the regular `Chrome Browser` but just to get the `user-data-dir`, type `chrome://version/` in the URL bar within a tab, as shown below:
+Now, you will run the regular `Chrome Browser` but just to get the `user-data-dir`, type `chrome://version/` in the URL bar, as shown below:
 
 <br>
 <p align="center">
@@ -89,7 +89,7 @@ Now, you will run the regular `Chrome Browser` but just to get the `user-data-di
 Copy that path (and paste it in the same temporary `.txt` or `.docx` file previously created), then close the regular `Chrome Browser` you have open.
 
 
-All right now, you are going to run `Chrome Browser` with DevTools protocol enabled, go to the **Windows Search Bar**, type "cmd" and open the first option that appears, then type `cd` followed by the first path you copied previously, then press ↵Enter as shown below:
+All right now, you are going to run `Chrome Browser` with **DevTools protocol enabled**, go to the **Windows Search Bar**, type "cmd" and open the first option that appears, then type `cd` followed by 1 `Space tab` and then the first path you previously copied, then press ↵Enter as shown below:
 
 <br>
 <p align="center">
@@ -115,3 +115,53 @@ All right, it will open a **Chrome instance** (window) like this one down below:
 <p align="center"><em>Else, you will have to install it manually, like the first time 🤷‍♂️</em></p>
 <br>
 
+So now you will log in to your wallet to check if it has the **Polygon Mainnet** set as the one to use in OpenSea, as shown below:
+
+<br>
+<p align="center">
+   <img src="screenshots/verifying-polygon-mainnet-has-been-set.png"/>
+</p>
+<p align="center"><em>If you HAVE NOT set the Polygon Mainnet yet, go to this <a href="https://support.polkastarter.com/article/18-how-to-add-polygon-matic-network-to-metamask">link</a>.</em></p>
+<p align="center"><em>And follow the instructions provided to manually add the Polygon Network to your wallet 👨‍💻</em></p>
+<p align="center"><em>Then, change the Ethereum Mainnet (or whatever Mainnet you currently have) for Polygon's one 💻</em></p>
+<br>
+
+All right, now you will go to the <a href="https://opensea.io/">OpenSea main page</a> as shown below:
+
+<br>
+<p align="center">
+   <img src="screenshots/opensea-main-page.png"/>
+</p>
+<br>
+
+Now you will move your mouse to the account button (👤) and click on "My Collections" button, as shown below:
+
+<br>
+<p align="center">
+   <img src="screenshots/opensea-collections-button.png"/>
+</p>
+<br>
+
+Then, it will load a page that will ask you to connect your wallet, as shown below:
+
+<br>
+<p align="center">
+   <img src="screenshots/opensea-connect-metamask-wallet.png"/>
+</p>
+<br>
+
+You will connect your wallet, and then the website will show you the collections you have created so far:
+
+<br>
+<p align="center">
+   <img src="screenshots/opensea-my-collections-page.png"/>
+</p>
+<br>
+
+Now you will click on "Create a collection" button to create one if you haven't done it yet, else you will pick the collection you want to update, and then click on "Add item" button as shown below: 
+
+<br>
+<p align="center">
+   <img src="screenshots/opensea-add-item.png"/>
+</p>
+<br>
