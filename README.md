@@ -165,3 +165,33 @@ Now you will click on "Create a collection" button to create one if you haven't 
    <img src="screenshots/opensea-add-item.png"/>
 </p>
 <br>
+
+<h4 align="center">🔻🔻THE FOLLOWING STEP MUST ONLY BE DONE ONCE IF THIS IS YOUR VERY FIRST TIME UPLOADING AN NFT TO OPENSEA🔻🔻</h4>
+
+You will upload your first NFT manually once done, you will click on "Sell" button to set a price for that NFT you just uploaded.
+
+<br>
+<p align="center">
+   <img src="screenshots/opensea-unlock-currency.png"/>
+</p>
+<br>
+
+In order to set a price in any of the cryptocurrencies allowed as a payment method on OpenSea, you must first submit a transaction with your wallet to trade with a particular cryptocurrency as explained <a href ="https://youtu.be/wOCcsGNtpqc?t=502">in this part of this video</a>, this process must be done once per cryptocurrency, but if you have already done this before, skip this step.
+
+<h4 align="center">🔺🔺THE STEP ABOVE MUST ONLY BE DONE ONCE IF THIS IS YOUR VERY FIRST TIME UPLOADING AN NFT TO OPENSEA🔺🔺</h4>
+
+Now, you will have to download `chromedriver` (if you haven't done it before) from <a href="https://chromedriver.chromium.org/">this page</a>, you will click the latest stable release, then you will download the file with the name "**chromedriver_win32.zip**", this will be used by **The Bulkdozer** to take control of your Chrome Browser, once downlodaded you will unzip that file, then right-click it and select "Properties".
+
+<br>
+<p align="center">
+   <img src="screenshots/chromedriver-properties-security.png"/>
+</p>
+<br>
+
+Then you navigate to the "Security" tab, and copy the path from this file (and save it in a new `.txt` or `.docx` file).
+
+<h3 align="center">🏴🏴🏴All right, from this point you are now ready to start The Bulkdozer! 🏴🏴🏴</h3>
+
+
+
+
