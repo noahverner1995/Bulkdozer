@@ -16,9 +16,9 @@ Imagine that you were able to replicate the efficiency of uploading a big collec
   
 Fortunately that's not exactly the case ***IF you have created a collection of NFTs using*** <a href ="https://github.com/noahverner1995/SAND-wich">***SAND-wich***</a> 🥪😉.
 
-<a href ="https://github.com/noahverner1995/SAND-wich">***SAND-wich***</a> is another open-source project that is useful for making simple NFT collections that require merging any number of 2d layers following an specific order (provided by you), as well as the corresponding metadata used in the process. 
+<a href ="https://github.com/noahverner1995/SAND-wich">**SAND-wich**</a> is another open-source project that is useful for making simple NFT collections that require merging any number of 2d layers following an specific order (provided by you), as well as the corresponding metadata used in the process. 
 
-Once you have created your NFT collection with **SAND-wich**, and also read this guide, you will be ready for starting <a href ="https://github.com/noahverner1995/Bulkdozer/blob/main/exe/bulkdozer.exe">***The Bulkdozer***</a> 🚛.
+Once you have created your NFT collection with **SAND-wich**, and also read this guide, you will be ready for starting <a href ="https://github.com/noahverner1995/Bulkdozer/blob/main/exe/bulkdozer.exe">**The Bulkdozer**</a> 🚛.
   
   ><em><h3>That's cool, what do I need to know? 🤷‍♂️</h3></em> 
 
@@ -40,3 +40,78 @@ By now, let's start mentioning a summary of the technology this program uses �
 **If you are a developer**, you will first have to have installed `Python 3.9.6` or later with the following dependencies: `Pandas 1.3.1` or later, `Selenium 4.1.0` or later, `NumPy 1.21.1` or later, `PyAutoGUI 0.9.53` or later. Then you can copy the code from the `bulkdozer.py` file and run it in your preferred environment.
     
 **If you ARE NOT a developer**, you will first have to deactivate your Antivirus for then <a href ="https://github.com/noahverner1995/Bulkdozer/blob/main/exe/bulkdozer.exe">downloading the exe file</a>. Then you can execute the program by clicking on it and pressing ↵Enter.
+
+## Usage
+
+First of all, you will open `Chrome Browser` using <a href="https://chromedevtools.github.io/devtools-protocol/">**DevTools as protocol client**</a>. This is a mandatory condition since it's the only way (at least known by me so far) to properly let a program take control of a `Chrome Browser` instance with `Selenium` while also **AVOIDING triggering Cloudflare DDoS protection** as shown below:
+
+(Btw, ***keep in mind that you can only have 1 Chrome Instance (window) open when doing this process***, so if you want to keep reading this guide while also running the **The Bulkdozer**, read this guide in a different device (i.e. Your phone or another PC) and start **The Bulkdozer** in your regular PC)
+
+
+<br>
+<p align="center">
+   <img src="screenshots/cloudflare-checks-your-browser-5-seconds-delay.png"/>
+</p>
+<p align="center"><em>If you see this when trying to automate a process in a webpage,</em></p>
+<p align="center"><em>it means you DID NOT run Chrome Browser with DevTools protocol enabled</em></p>
+<br>
+
+Don't worry, it's not difficult, just go the **Windows Search Bar**, type "chrome", find the Application option, right-click it, and select `Open file location` as shown below:
+
+<p align="center">
+    <img src="screenshots/get-chrome-executable-path.png"/>
+</p>
+
+It will open a folder containing all of the corresponding executable files your `Start Menu` has, now you will right-click again the `Google Chrome` executable file and select `Open file location` as shown below:
+
+<br>
+<p align="center">
+   <img src="screenshots/get-THE-REAL-chrome-executable-path.png"/>
+</p>
+<br>
+
+Okay, now you will copy the path of the current folder (and paste it in a temporary `.txt` or `.docx` file) as shown below:
+
+<br>
+<p align="center">
+   <img src="screenshots/copy-the-current-path.png"/>
+</p>
+<br>
+
+Now, you will run the regular `Chrome Browser` but just to get the `user-data-dir`, type `chrome://version/` in the URL bar within a tab, as shown below:
+
+<br>
+<p align="center">
+   <img src="screenshots/get-user-data-dir.png"/>
+</p>
+<br>
+
+Copy that path (and paste it in the same temporary `.txt` or `.docx` file previously created), then close the regular `Chrome Browser` you have open.
+
+
+All right now, you are going to run `Chrome Browser` with DevTools protocol enabled, go to the **Windows Search Bar**, type "cmd" and open the first option that appears, then type `cd` followed by the first path you copied previously, then press ↵Enter as shown below:
+
+<br>
+<p align="center">
+   <img src="screenshots/cmd-first-path.png"/>
+</p>
+<br>
+
+Okay, now type `chrome.exe --remote-debugging-port=9222 --user-data-dir:` followed by the second path you copied previously inside quotation marks (`""`), then press ↵Enter as shown below: 
+
+<br>
+<p align="center">
+   <img src="screenshots/run-chrome-with-devtools-enabled-and-user-data-dir.png"/>
+</p>
+<br>
+
+All right, it will open a **Chrome instance** (window) like this one down below:
+
+<br>
+<p align="center">
+   <img src="screenshots/chrome-instance-running.png"/>
+</p>
+<p align="center"><em>Make sure to check if this Chrome instance has the Metamask extension installed.</em></p>
+<p align="center"><em>Else, you will have to install it manually, like the first time 🤷‍♂️</em></p>
+<br>
+
