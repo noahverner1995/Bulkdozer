@@ -166,7 +166,7 @@ Now you will click on "Create a collection" button to create one if you haven't 
 </p>
 <br>
 
-<h4 align="center">🔻🔻THE FOLLOWING STEP MUST ONLY BE DONE ONCE IF THIS IS YOUR VERY FIRST TIME UPLOADING AN NFT TO OPENSEA🔻🔻</h4>
+<h4 align="center">🔻🔻THE FOLLOWING STEP MUST ONLY BE DONE ONCE IF THIS IS YOUR FIRST TIME UPLOADING AN NFT TO OPENSEA🔻🔻</h4>
 
 You will upload your first NFT manually once done, you will click on "Sell" button to set a price for that NFT you just uploaded.
 
@@ -226,6 +226,17 @@ Okay, before you start typing anything, I recommend you to create a temporary `.
 
 ><em><h3>NOTES:</h3></em> 
 >
->⭕ It is recommended that you set both **Start number** and **End number** proportionally to the size of your collection, but **DO NOT ABUSE** the total number of requests you ask to the OpenSea's server, ***the greater the difference between the Start number and End number, the greater the number of requests you are going to ask to OpenSea's server, resulting in getting many 503 errors.***
+>⭕ It is recommended that you set both **Start number** and **End number** proportionally to the size of your collection, but **DO NOT ABUSE** the total number of requests you ask to the OpenSea's server, ***the greater the difference between the Start number and End number, the greater the number of requests you are going to ask to OpenSea's server in a single run, resulting in getting many 503 errors.***
 >
->⭕ You can get the Metadata File path the same way you got the path to the `chromedriver` you downlodaded and unzipped, reread the part of this guide that explains the `chromedriver` stuff
+>⭕ You can get the Metadata File path the same way you got the path to the `chromedriver` you downlodaded and unzipped, reread the part of this guide that explains the `chromedriver` stuff to understand this point.
+>
+
+After introducing the previous inputs, you will get an output like this one below:
+
+
+<p align="center">
+   <img src="screenshots/bulkdozer-inputs-introduced.png"/>
+</p>
+<br>
+
+Now you will introduce the last input, which is the path to the `chromedriver.exe` you have. After you do that, you have to switch from `bulkdozer.exe` to `Google Chrome` very fast to let **The Bulkdozer** run as expected.
