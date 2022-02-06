@@ -180,7 +180,7 @@ In order to set a price in any of the cryptocurrencies allowed as a payment meth
 
 <h4 align="center">🔺🔺THE STEP ABOVE MUST ONLY BE DONE ONCE IF THIS IS YOUR VERY FIRST TIME UPLOADING AN NFT TO OPENSEA🔺🔺</h4>
 
-Now, you will have to download `chromedriver` (if you haven't done it before) from <a href="https://chromedriver.chromium.org/">this page</a>, you will click the latest stable release, then you will download the file with the name "**chromedriver_win32.zip**", this will be used by **The Bulkdozer** to take control of your Chrome Browser, once downlodaded you will unzip that file, then right-click it and select "Properties".
+Now, you will have to download `chromedriver` (if you haven't done it before) from <a href="https://chromedriver.chromium.org/">this page</a>, you will click the latest stable release, then you will download the file with the name "**chromedriver_win32.zip**", this will be used by **The Bulkdozer** to take control of your Chrome Browser, once downloaded you will unzip that file, then right-click it and select "Properties".
 
 <br>
 <p align="center">
@@ -191,7 +191,41 @@ Now, you will have to download `chromedriver` (if you haven't done it before) fr
 Then you navigate to the "Security" tab, and copy the path from this file (and save it in a new `.txt` or `.docx` file).
 
 <h3 align="center">🏴🏴🏴All right, from this point you are now ready to start The Bulkdozer! 🏴🏴🏴</h3>
+<br>
 
+You will download the `bulkdozer.exe` file from <a href="https://github.com/noahverner1995/Bulkdozer/blob/main/exe/bulkdozer.exe">here</a> and save it in your desired location.
 
+Once done, you will click it and press ↵Enter as shown below:
 
+<br>
+<p align="center">
+   <img src="screenshots/bulkdozer-initial-prompt.png"/>
+</p>
+<br>
 
+Now, I will explain the variables to use:
+
+🟪 **Item Name**: This variable stores the name that will be shared by every single NFT in your collection.<br>
+🟪 **External link**: This variable stores the link to your website in which users can know more about your collection (raodmap, partnerships, etc).<br>
+🟪 **Description**: This variable stores a text that will be shared by every single NFT in your collection (similar to the Item Name variable).<br>
+🟪 **Collection link**: This variable stores the link to your collection in which you desire to upload your NFTs.<br>
+🟪 **Start number**: This variable stores the first NFT to upload from your collection.<br>
+🟪 **End number**: This variable stores the last NFT to upload from your collection.<br>
+🟪 **Payment method**: This variable let you choose the payment method, only ETH or DAI supported.<br>
+🟪 **Initial price**: This variable stores the initial price your NFTs will have, it supports decimals points (e.g. 7.5 or 0.05128).<br>
+🟪 **NFT Folder path**: This variable stores the path at which your NFTs are located.<br>
+🟪 **Metadata File path**: This variable stores the path at which the Metadata file is located (usually within the same NFT Folder).<br>
+
+Okay, before you start typing anything, I recommend you to create a temporary `.txt` or `.docx` file in which you will type the information to pass as input to **The Bulkdozer**, as shown below:
+
+<br>
+<p align="center">
+   <img src="screenshots/bulkdozer-inputs.png"/>
+</p>
+<br>
+
+><em><h3>NOTES:</h3></em> 
+>
+>⭕ It is recommended that you set both **Start number** and **End number** proportionally to the size of your collection, but **DO NOT ABUSE** the total number of requests you ask to the OpenSea's server, ***the greater the difference between the Start number and End number, the greater the number of requests you are going to ask to OpenSea's server, resulting in getting many 503 errors.***
+>
+>⭕ You can get the Metadata File path the same way you got the path to the `chromedriver` you downlodaded and unzipped, reread the part of this guide that explains the `chromedriver` stuff
