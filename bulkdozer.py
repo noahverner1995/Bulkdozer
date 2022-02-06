@@ -396,52 +396,38 @@ while nft_counter <= end_number:
         button_ending = driver.find_element(By.XPATH, '/html/body/div[1]/div/main/div/div/div[3]/div/div[2]/div/div[1]/form/div[2]/div/div[2]/div/div/div/div/div[2]/div[2]/div/div[2]/input')
         button_ending.click()
         while True:
-            if int(array_current_date_ending[2]) <= 28:
-                counter = 0
-                textbox_ending = driver.find_element(By.XPATH, '/html/body/div[1]/div/main/div/div/div[3]/div/div[2]/div/div[1]/form/div[2]/div/div[2]/div/div/div/div/div[2]/div[2]/div/div[2]/input').click() #Click the ending textbox
-                pyautogui.press('right')
-                while counter < 5:
+            if int(array_current_date_ending[2]) < int(array_max_date_ending[2]):#if the day in the current_date_ending is less than the day in the max_date_ending
+                while True:
                     pyautogui.press('up')
-                    counter += 1
-                counter = 0
-                current_date_ending = driver.find_element(By.XPATH, '/html/body/div[1]/div/main/div/div/div[3]/div/div[2]/div/div[1]/form/div[2]/div/div[2]/div/div/div/div/div[2]/div[2]/div/div[2]/input').get_attribute('value')
-                array_current_date_ending = current_date_ending.split('-')
-                if int(array_current_date_ending[2]) < int(array_max_date_ending[2]):
-                    pyautogui.press('left')
-                    number_of_presses = int(array_max_date_ending[2]) - int(array_current_date_ending[2])
-                    while counter != number_of_presses:
-                        pyautogui.press('up')
-                        counter += 1
-                    pyautogui.press('enter')
-                    break
-                elif int(array_current_date_ending[2]) == int(array_max_date_ending[2]):
-                    pyautogui.press('enter')
-                    break
-            else:
-                counter = 0
-                textbox_ending = driver.find_element(By.XPATH, '/html/body/div[1]/div/main/div/div/div[3]/div/div[2]/div/div[1]/form/div[2]/div/div[2]/div/div/div/div/div[2]/div[2]/div/div[2]/input').click() #Click the ending textbox
-                number_of_presses = int(array_current_date_ending[2]) - 28
-                while counter != number_of_presses:
+                    current_date_ending = driver.find_element(By.XPATH, '/html/body/div[1]/div/main/div/div/div[3]/div/div[2]/div/div[1]/form/div[2]/div/div[2]/div/div/div/div/div[2]/div[2]/div/div[2]/input').get_attribute('value')
+                    array_current_date_ending = current_date_ending.split('-')
+                    if int(array_current_date_ending[2]) == int(array_max_date_ending[2]):
+                        break
+                pyautogui.press('right')
+                while True:
+                    pyautogui.press('up')
+                    current_date_ending = driver.find_element(By.XPATH, '/html/body/div[1]/div/main/div/div/div[3]/div/div[2]/div/div[1]/form/div[2]/div/div[2]/div/div/div/div/div[2]/div[2]/div/div[2]/input').get_attribute('value')
+                    array_current_date_ending = current_date_ending.split('-')
+                    if int(array_current_date_ending[1]) == int(array_max_date_ending[1]):
+                        break
+                pyautogui.press('enter')
+                break
+            if int(array_current_date_ending[2]) > int(array_max_date_ending[2]):#if the day in the current_date_ending is greater than the day in the max_date_ending
+                while True:
                     pyautogui.press('down')
-                    counter += 1
+                    current_date_ending = driver.find_element(By.XPATH, '/html/body/div[1]/div/main/div/div/div[3]/div/div[2]/div/div[1]/form/div[2]/div/div[2]/div/div/div/div/div[2]/div[2]/div/div[2]/input').get_attribute('value')
+                    array_current_date_ending = current_date_ending.split('-')
+                    if int(array_current_date_ending[2]) == int(array_max_date_ending[2]):
+                        break 
                 pyautogui.press('right')
-                while counter < 5:
+                while True:
                     pyautogui.press('up')
-                    counter += 1
-                counter = 0
-                current_date_ending = driver.find_element(By.XPATH, '/html/body/div[1]/div/main/div/div/div[3]/div/div[2]/div/div[1]/form/div[2]/div/div[2]/div/div/div/div/div[2]/div[2]/div/div[2]/input').get_attribute('value')
-                array_current_date_ending = current_date_ending.split('-')
-                if int(array_current_date_ending[2]) < int(array_max_date_ending[2]):
-                    pyautogui.press('left')
-                    number_of_presses = int(array_max_date_ending[2]) - int(array_current_date_ending[2])
-                    while counter != number_of_presses:
-                        pyautogui.press('up')
-                        counter += 1
-                    pyautogui.press('enter')
-                    break
-                elif int(array_current_date_ending[2]) == int(array_max_date_ending[2]):
-                    pyautogui.press('enter')
-                    break
+                    current_date_ending = driver.find_element(By.XPATH, '/html/body/div[1]/div/main/div/div/div[3]/div/div[2]/div/div[1]/form/div[2]/div/div[2]/div/div/div/div/div[2]/div[2]/div/div[2]/input').get_attribute('value')
+                    array_current_date_ending = current_date_ending.split('-')
+                    if int(array_current_date_ending[1]) == int(array_max_date_ending[1]):
+                        break
+                pyautogui.press('enter')
+                break          
         main_page = driver.current_window_handle #get the current url 
         button_complete_listing = driver.find_element(By.XPATH, '//*[@id="main"]/div/div/div[3]/div/div[2]/div/div[1]/form/div[5]/button')
         button_complete_listing.click()
