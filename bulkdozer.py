@@ -213,8 +213,9 @@ print('\033[0;37;44mOnce started do not interfere with this process until it has
 time.sleep(1.7)
 
 nft_counter = start_number #counter for the while loop
+checker_add_item_button = 0 #a little variable to make sure the while loop below works as expected
 while nft_counter <= end_number:
-    if driver.current_url == collection_link:
+    if driver.current_url == collection_link and checker_add_item_button == 1:
         if nft_counter == start_number:
             print(f'\033[0;37;44mStarting minting the nft #{start_number}, the final nft to be minted is #{end_number}\033[0m')
         elif nft_counter > start_number:
