@@ -149,17 +149,18 @@ while True: #here the bulk-dozer asks for the payment method and the initial pri
         payment_method= input("\033[0;37;41mInvalid Input, Type only 'ETH' or 'DAI' without single quotation marks:\033[0m ")         
 nft_folder_path = input("\033[0;37;32mWe are almost done! Now, define the path at which your NFTs are located:\033[0m ")
 unfound_images = 0
+mini_counter = start_number
 while True:   
     if check_path(nft_folder_path) == False:
         print('\033[31;1;4mThis PATH is invalid!\033[0m')
         nft_folder_path = input('Please type the RIGHT NFT FOLDER PATH:')
     elif check_path(nft_folder_path) == True:
-        while start_number <= end_number:
-            image_path_checker = nft_folder_path+'\\'+str(start_number)+'.png'
+        while mini_counter <= end_number:
+            image_path_checker = nft_folder_path+'\\'+str(mini_counter)+'.png'
             if check_path(image_path_checker) == False:
-                print(f'the file {start_number}.png does not exist at the path provided')
+                print(f'the file {mini_counter}.png does not exist at the path provided')
                 unfound_images += 1
-            start_number += 1
+            mini_counter += 1
         if unfound_images == 0:
             break            
         elif unfound_images > 0:
