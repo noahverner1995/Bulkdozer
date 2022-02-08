@@ -240,3 +240,25 @@ After introducing the previous inputs, you will get an output like this one belo
 <br>
 
 Now you will introduce the last input, which is the path to the `chromedriver.exe` you have. After you do that, you have to switch from `bulkdozer.exe` to `Google Chrome` very fast to let **The Bulkdozer** run as expected.
+
+✔**If you have done every step mentioned above correctly, you will get an output like in <a href="https://github.com/noahverner1995/Bulkdozer/blob/main/video_preview/bulkdozer-final-preview.mp4">this video</a>, just download it and play it**😎. 
+
+## Getting help
+
+If you have questions, concerns, bug reports, etc, please file an issue in <a href ="https://github.com/noahverner1995/Bulkdozer/issues">this repository's Issue Tracker</a>. 
+
+## Getting involved
+
+You can follow us on our social networks to keep well informed about more developments like this one, and drop some 💓, 🔁, and 👏:
+
+• Twitter 🐦: https://twitter.com/cryptobote
+<br>
+• Medium 📰: https://medium.com/@cryptobote
+
+💚 **You can also support us by purchasing at least one NFT from <a href="https://opensea.io/noahverner?tab=created_collections">these collections</a>** 💚
+
+## Credits and references
+
+1. <a href ="https://youtu.be/dk_N53vnJiY">How to Upload 10000 NFT OpenSea with an APP (FREE & EASY METHOD) Bulk NFTs Upload with READY CODE</a>
+
+
