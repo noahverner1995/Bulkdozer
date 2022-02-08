@@ -56,7 +56,7 @@ First of all, you will open `Chrome Browser` using <a href="https://chromedevtoo
 <p align="center"><em>it means you DID NOT run Chrome Browser with DevTools protocol enabled</em></p>
 <br>
 
-Don't worry, it's not difficult, just go the **Windows Search Bar**, type "chrome", find the Application option, right-click it, and select `Open file location` as shown below:
+Don't worry, it's not difficult, just go to the **Windows Search Bar**, type "chrome", find the Application option, right-click it, and select `Open file location` as shown below:
 
 <p align="center">
     <img src="screenshots/get-chrome-executable-path.png"/>
