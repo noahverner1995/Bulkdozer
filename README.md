@@ -22,7 +22,7 @@ Once you have created your NFT collection with **SAND-wich**, and also read this
   
   ><em><h3>That's cool, what do I need to know? 🤷‍♂️</h3></em> 
 
-I'm glad you ask!
+We are glad you ask!
   
 Essentially you must know that after having logged in to your OpenSea account, and created the corresponding NFT collection in which you desire to upload your NFTs, you will start **The Bulkdozer**, which will ask you for some inputs, for then taking limited control of your Chrome Browser for doing an automated process, until it completely finishes uploading your NFTs (including the metadata).
 
