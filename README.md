@@ -43,9 +43,9 @@ By now, let's start mentioning a summary of the technology this program uses ðŸ¤
 
 ## Usage
 
-First of all, you will open `Chrome Browser` using <a href="https://chromedevtools.github.io/devtools-protocol/">**DevTools as protocol client**</a>. This is a mandatory condition since it's the only way (at least known by me so far) to properly let a program take control of a `Chrome Browser` instance with `Selenium` while also **AVOIDING triggering Cloudflare DDoS protection** as shown below:
+First of all, you will open `Chrome Browser` using <a href="https://chromedevtools.github.io/devtools-protocol/">**DevTools as protocol client**</a>. This is a mandatory condition since it's the only way (at least known by us so far) to properly let a program take control of a `Chrome Browser` instance with `Selenium` while also **AVOIDING triggering Cloudflare DDoS protection** as shown below:
 
-(Btw, ***keep in mind that you can only have 1 Chrome Instance (window) open when doing this process***, so if you want to keep reading this guide while also running the **The Bulkdozer**, I encourage you to read this guide in a different device (i.e. Your phone or another PC) and start **The Bulkdozer** in your regular PC)
+(Btw, ***keep in mind that you can only have 1 Chrome Instance (window) open when doing this process***, so if you want to keep reading this guide while also running **The Bulkdozer**, I encourage you to read this guide in a different device (i.e. Your phone or another PC) and start **The Bulkdozer** in your regular PC)
 
 
 <br>
